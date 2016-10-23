@@ -16,7 +16,7 @@ import com.jake.andoridmvp.mudule.login.entity.User;
 public class LoginModel implements LoginContract.IModel {
     @Override
     public void login(String account, String pwd, ResponseCallback<User> callback) {
-        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(pwd)) {
+        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(pwd) && TextUtils.equals("1", account)) {
             User user = new User();
             user.nickname = "jake";
             user.sex = 1;

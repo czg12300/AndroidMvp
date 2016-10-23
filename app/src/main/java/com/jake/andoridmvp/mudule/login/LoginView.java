@@ -1,11 +1,14 @@
 package com.jake.andoridmvp.mudule.login;
 
 import android.app.ProgressDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.jake.andoridmvp.R;
+import com.jake.andoridmvp.utils.ToastUtil;
 
 /**
  * description：
@@ -33,9 +36,18 @@ public class LoginView extends LoginContract.AView<LoginContract.IPresenter> {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (TextUtils.isEmpty(mEvAccount.getText())) {
+                    ToastUtil.show(mEvAccount.getHint().toString());
+                    return;
+                }
+                if (TextUtils.isEmpty(mEvPwd.getText())) {
+                    ToastUtil.show(mEvPwd.getHint().toString());
+                    return;
+                }
                 showLoginLoadView();
                 mBtnLogin.setEnabled(false);
                 mBtnLogin.setText("Login...");
+                mPresenter.login(mEvAccount.getText().toString(), mEvPwd.getText().toString());
 
             }
         });
@@ -45,6 +57,7 @@ public class LoginView extends LoginContract.AView<LoginContract.IPresenter> {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(getContext());
             mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            mProgressDialog.setMessage("Please wait...");
         }
         mProgressDialog.show();
     }

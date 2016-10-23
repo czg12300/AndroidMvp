@@ -20,6 +20,7 @@ public abstract class ABaseView<Presenter extends IBasePresenter> {
     public ABaseView(View contentView, Presenter presenter) {
         this.mContentView = contentView;
         mPresenter = presenter;
+        initViews();
     }
 
     /**

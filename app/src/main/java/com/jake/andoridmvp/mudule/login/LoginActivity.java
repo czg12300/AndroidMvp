@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.IPresen
             public void run() {
                 loginLogic(account, pwd);
             }
-        }, 800);
+        }, 5000);
 
     }
 
