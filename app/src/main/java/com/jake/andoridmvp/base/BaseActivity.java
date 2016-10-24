@@ -2,6 +2,7 @@ package com.jake.andoridmvp.base;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,30 +16,34 @@ import android.view.ViewGroup;
 
 
 public class BaseActivity extends AppCompatActivity {
-    protected int mActivityState;
-    protected static final int ACTIVITY_CREATE = 1;
-    protected static final int ACTIVITY_RESUME = 2;
-    protected static final int ACTIVITY_PAUSE = 3;
-    protected static final int ACTIVITY_DESTROY = 4;
+    protected int mActivityState = -1;
+    protected static final int ACTIVITY_CREATE = 0x001;
+    protected static final int ACTIVITY_RESUME = 0x002;
+    protected static final int ACTIVITY_PAUSE = 0x003;
+    protected static final int ACTIVITY_DESTROY = 0x004;
 
+    @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {//if child want to override this method,have to call super
         super.onCreate(savedInstanceState);
         mActivityState = ACTIVITY_CREATE;
     }
 
+    @CallSuper
     @Override
     protected void onResume() {//if child want to override this method,have to call super
         super.onResume();
         mActivityState = ACTIVITY_RESUME;
     }
 
+    @CallSuper
     @Override
     protected void onPause() {//if child want to override this method,have to call super
         super.onPause();
         mActivityState = ACTIVITY_PAUSE;
     }
 
+    @CallSuper
     @Override
     protected void onDestroy() {//if child want to override this method,have to call super
         super.onDestroy();
@@ -59,5 +64,13 @@ public class BaseActivity extends AppCompatActivity {
 
     protected Activity getActivity() {
         return this;
+    }
+
+    /**
+     * Return true if the activity is alive
+     * @return
+     */
+    protected boolean isAlive() {
+        return mActivityState != ACTIVITY_DESTROY && mActivityState != -1;
     }
 }
