@@ -5,7 +5,7 @@ import android.view.View;
 import com.jake.andoridmvp.base.ABaseView;
 import com.jake.andoridmvp.base.IBasePresenter;
 import com.jake.andoridmvp.model.ResponseCallback;
-import com.jake.andoridmvp.mudule.login.entity.User;
+import com.jake.andoridmvp.entity.User;
 
 /**
  * description：login module mvp contract

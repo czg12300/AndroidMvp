@@ -1,4 +1,4 @@
-package com.jake.andoridmvp.mudule.login.entity;
+package com.jake.andoridmvp.entity;
 
 /**
  * description：user info
